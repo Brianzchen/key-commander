@@ -12,7 +12,15 @@ module.exports = {
 
 // ---
 
-func: (event: KeyboardEvent) => void
+func: (
+  event: KeyboardEvent,
+  {
+    // Use this to determine if the currently focused element
+    // when then event occurs has a tab index such as an input
+    // where you may not want to trigger your function
+    onTabElement: boolean,
+  }
+) => void
 options: {
   // At what stage of the user input you would like the function called
   event: 'keyup' | 'keydown' | 'keypress' // default: keydown
@@ -40,8 +48,10 @@ import kc from 'key-commander';
 
 const Comp = () => {
   useEffect(() => {
-    const id = kc.subscribe('b', (event) => {
-      // close menu
+    const id = kc.subscribe('b', (event, { onTabElement }) => {
+      if (!onTabElement) {
+        // close menu
+      }
     }, { onRepeat: true });
 
     return () => {

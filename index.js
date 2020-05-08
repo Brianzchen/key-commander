@@ -11,7 +11,12 @@ type OptionsT = {
 type EventFuncT = {
   id: string,
   key: string,
-  func: (event: KeyboardEvent) => void,
+  func: (
+    event: KeyboardEvent,
+    {
+      onTabElement: boolean,
+    },
+  ) => void,
   options: OptionsT,
 }
 
@@ -58,17 +63,21 @@ class KeyCommander {
 
       if (event.repeat && !funcObj.options.onRepeat) return;
 
+      const other = {
+        onTabElement: document.activeElement?.tabIndex !== -1,
+      };
+
       if (funcObj.key.toLowerCase() === event.key.toLowerCase()) {
         const { modifier } = funcObj.options;
         if (typeof modifier === 'string') {
           if (modifier === 'alt' && event.altKey) {
-            funcObj.func(event);
+            funcObj.func(event, other);
           } else if (modifier === 'ctrl' && event.ctrlKey) {
-            funcObj.func(event);
+            funcObj.func(event, other);
           } else if (modifier === 'meta' && event.metaKey) {
-            funcObj.func(event);
+            funcObj.func(event, other);
           } else if (modifier === 'shift' && event.shiftKey) {
-            funcObj.func(event);
+            funcObj.func(event, other);
           }
         } else if (Array.isArray(modifier)) {
           const conditions: Array<boolean> = modifier.map((o) => {
@@ -85,10 +94,10 @@ class KeyCommander {
             return prev;
           }, true);
           if (isAllModifiersSelected) {
-            funcObj.func(event);
+            funcObj.func(event, other);
           }
         } else {
-          funcObj.func(event);
+          funcObj.func(event, other);
         }
       }
     }

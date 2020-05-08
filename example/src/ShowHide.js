@@ -5,8 +5,10 @@ import kc from '../../index.dist';
 // Tests sub/unsub
 const ShowHide = () => {
   useEffect(() => {
-    const id = kc.subscribe('b', () => {
-      console.log('You pressed b!');
+    const id = kc.subscribe('b', (event, { onTabElement }) => {
+      if (!onTabElement) {
+        console.log('You pressed b!');
+      }
     });
 
     return () => {
