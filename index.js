@@ -37,10 +37,22 @@ class KeyCommander {
     window.addEventListener('keypress', (event) => this.listener(event, 'keypress'));
   }
 
+  getFuncArray(event: KeyT) {
+    switch (event) {
+      case 'keyup':
+        return this.keyupFuncs;
+      case 'keydown':
+        return this.keydownFuncs;
+      case 'keypress':
+        return this.keypressFuncs;
+      default:
+        return [];
+    }
+  }
+
   listener(event: KeyboardEvent, keyEvent: KeyT) {
-    // $FlowFixMe
-    const funcs = this[`${keyEvent}Funcs`];
-    for (let i = 0, len = funcs; i < len; i++) {
+    const funcs = this.getFuncArray(keyEvent);
+    for (let i = 0, len = funcs.length; i < len; i++) {
       const funcObj: EventFuncT = funcs[i];
       if (funcObj.key === event.key) {
         const { modifier } = funcObj.options;
@@ -87,8 +99,7 @@ class KeyCommander {
 
     const id: string = Math.random().toString(36).substr(2, 9);
 
-    // $FlowFixMe
-    this[`${event}Funcs`].push({
+    this.getFuncArray(event).push({
       id,
       key,
       func,
