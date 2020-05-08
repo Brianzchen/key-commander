@@ -3,7 +3,7 @@ type KeyT = 'keyup' | 'keydown' | 'keypress';
 type ModifierT = 'alt' | 'ctrl' | 'meta' | 'shift';
 
 type OptionsT = {
-  event: KeyT,
+  event?: KeyT,
   modifier?: ModifierT | Array<ModifierT>,
   onRepeat?: boolean,
 };
@@ -11,7 +11,7 @@ type OptionsT = {
 type EventFuncT = {
   id: string,
   key: string,
-  func: Function,
+  func: (event: KeyboardEvent) => void,
   options: OptionsT,
 }
 
@@ -62,13 +62,13 @@ class KeyCommander {
         const { modifier } = funcObj.options;
         if (typeof modifier === 'string') {
           if (modifier === 'alt' && event.altKey) {
-            funcObj.func();
+            funcObj.func(event);
           } else if (modifier === 'ctrl' && event.ctrlKey) {
-            funcObj.func();
+            funcObj.func(event);
           } else if (modifier === 'meta' && event.metaKey) {
-            funcObj.func();
+            funcObj.func(event);
           } else if (modifier === 'shift' && event.shiftKey) {
-            funcObj.func();
+            funcObj.func(event);
           }
         } else if (Array.isArray(modifier)) {
           const conditions: Array<boolean> = modifier.map((o) => {
@@ -85,10 +85,10 @@ class KeyCommander {
             return prev;
           }, true);
           if (isAllModifiersSelected) {
-            funcObj.func();
+            funcObj.func(event);
           }
         } else {
-          funcObj.func();
+          funcObj.func(event);
         }
       }
     }
@@ -99,7 +99,7 @@ class KeyCommander {
     func: Function,
     options?: OptionsT = { event: 'keydown', onRepeat: false },
   ) {
-    const { event } = options;
+    const { event = 'keydown' } = options;
 
     const id: string = Math.random().toString(36).substr(2, 9);
 

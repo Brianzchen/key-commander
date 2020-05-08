@@ -12,7 +12,7 @@ module.exports = {
 
 // ---
 
-func: () => void
+func: (event: KeyboardEvent) => void
 options: {
   // At what stage of the user input you would like the function called
   event: 'keyup' | 'keydown' | 'keypress' // default: keydown
@@ -28,7 +28,7 @@ options: {
 ```js
 import kc from 'key-commander';
 
-const subId = kc.subscribe(() => {});
+const subId = kc.subscribe('escape', () => {});
 
 kc.unsub(subId);
 ```
@@ -40,9 +40,9 @@ import kc from 'key-commander';
 
 const Comp = () => {
   useEffect(() => {
-    const id = kc.subscribe((key) => {
+    const id = kc.subscribe('b', (event) => {
       // close menu
-    });
+    }, { onRepeat: true });
 
     return () => {
       kc.ubsub(id);
