@@ -1,3 +1,4 @@
+// @flow
 import React, { useEffect } from 'react';
 
 import kc from '../../index.dist';

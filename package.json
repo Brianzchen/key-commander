@@ -7,8 +7,8 @@
   "author": "Brian Chen <bzchen93@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "build": "babel index.js --out-file index.dist.js",
-    "build:watch": "yarn build --watch",
+    "build": "babel index.js --out-file index.dist.js && cp index.js index.dist.js.flow",
+    "build:watch": "babel index.js --out-file index.dist.js --watch",
     "prepublish": "yarn build"
   },
   "devDependencies": {

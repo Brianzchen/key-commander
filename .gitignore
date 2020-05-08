@@ -177,6 +177,6 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
-index.dist.js
+index.dist.*
 
 # End of https://www.gitignore.io/api/node,linux,macos,windows
