@@ -1,5 +1,8 @@
-// files
+# files
 .flowconfig
 .gitignore
 .nvmrc
 index.js
+
+# folders
+example/

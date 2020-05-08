@@ -8,6 +8,7 @@
   "license": "MIT",
   "scripts": {
     "build": "babel index.js --out-file index.dist.js",
+    "build:watch": "yarn build --watch",
     "prepublish": "yarn build"
   },
   "devDependencies": {

@@ -54,7 +54,7 @@ class KeyCommander {
     const funcs = this.getFuncArray(keyEvent);
     for (let i = 0, len = funcs.length; i < len; i++) {
       const funcObj: EventFuncT = funcs[i];
-      if (funcObj.key === event.key) {
+      if (funcObj.key.toLowerCase() === event.key.toLowerCase()) {
         const { modifier } = funcObj.options;
         if (typeof modifier === 'string') {
           if (modifier === 'alt' && event.altKey) {
@@ -105,14 +105,15 @@ class KeyCommander {
       func,
       options,
     });
+
+    return id;
   }
 
   unsub(subId: string) {
-    const allArray = [this.keyupFuncs, this.keydownFuncs, this.keypressFuncs];
-
-    for (let i = 0, len = allArray.length; i < len; i++) {
-      allArray[i] = allArray[i].filter(({ id }) => id !== subId);
-    }
+    const filtering = (arr) => arr.filter(({ id }) => id !== subId);
+    this.keyupFuncs = filtering(this.keyupFuncs);
+    this.keydownFuncs = filtering(this.keydownFuncs);
+    this.keypressFuncs = filtering(this.keypressFuncs);
   }
 }
 
