@@ -5,6 +5,7 @@ type ModifierT = 'alt' | 'ctrl' | 'meta' | 'shift';
 type OptionsT = {
   event: KeyT,
   modifier?: ModifierT | Array<ModifierT>,
+  onRepeat?: boolean,
 };
 
 type EventFuncT = {
@@ -54,6 +55,9 @@ class KeyCommander {
     const funcs = this.getFuncArray(keyEvent);
     for (let i = 0, len = funcs.length; i < len; i++) {
       const funcObj: EventFuncT = funcs[i];
+
+      if (event.repeat && !funcObj.options.onRepeat) return;
+
       if (funcObj.key.toLowerCase() === event.key.toLowerCase()) {
         const { modifier } = funcObj.options;
         if (typeof modifier === 'string') {
@@ -93,7 +97,7 @@ class KeyCommander {
   subscribe(
     key: string,
     func: Function,
-    options: OptionsT = { event: 'keydown' },
+    options?: OptionsT = { event: 'keydown', onRepeat: false },
   ) {
     const { event } = options;
 
