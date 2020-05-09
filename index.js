@@ -1,6 +1,6 @@
 // @flow
 type KeyT = 'keyup' | 'keydown' | 'keypress';
-type ModifierT = 'ctrl' | 'shift';
+type ModifierT = 'alt' | 'ctrl' | 'meta' | 'shift';
 
 type OptionsT = {
   event?: KeyT,

@@ -25,7 +25,7 @@ options: {
   // At what stage of the user input you would like the function called
   event: 'keyup' | 'keydown' | 'keypress' // default: keydown
   // If you want the function called only when one or more modifiers are active
-  modifier: void | 'ctrl' | 'shift' | Array<'ctrl' | 'shift'> // default: void
+  modifier: void | 'alt' | 'ctrl' | 'meta' | 'shift' | Array<'alt' | 'ctrl' | 'meta' | 'shift'> // default: void
   // If you want the function called multiple times if the user holds down a particular key
   onRepeat: boolean // default false
 }
