@@ -8,6 +8,12 @@ Runs a single event listener for `keyup`, `keydown`, and `keypress` that can be 
 module.exports = {
   subscribe: (key: string, func, options) => subId: string,
   unsub: (subId: string) => void,
+  getList: () => Array<{
+    id: string,
+    key: string,
+    func,
+    options,
+  }>
 }
 
 // ---

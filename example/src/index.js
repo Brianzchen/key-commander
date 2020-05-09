@@ -39,6 +39,8 @@ const App = () => {
     });
   }, []);
 
+  console.log(kc.getList());
+
   return (
     <div>
       test

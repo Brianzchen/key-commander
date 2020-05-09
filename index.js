@@ -37,6 +37,7 @@ class KeyCommander {
     (this: any).listener = this.listener.bind(this);
     (this: any).subscribe = this.subscribe.bind(this);
     (this: any).unsub = this.unsub.bind(this);
+    (this: any).getList = this.getList.bind(this);
 
     window.addEventListener('keyup', (event) => this.listener(event, 'keyup'));
     window.addEventListener('keydown', (event) => this.listener(event, 'keydown'));
@@ -128,6 +129,10 @@ class KeyCommander {
     this.keydownFuncs = filtering(this.keydownFuncs);
     this.keypressFuncs = filtering(this.keypressFuncs);
   }
+
+  getList() {
+    return [...this.keydownFuncs, ...this.keyupFuncs, ...this.keypressFuncs];
+  }
 }
 
 if (typeof window.__KEY_COMMANDER === 'undefined') {
@@ -137,4 +142,5 @@ if (typeof window.__KEY_COMMANDER === 'undefined') {
 module.exports = {
   subscribe: window.__KEY_COMMANDER.subscribe,
   unsub: window.__KEY_COMMANDER.unsub,
+  getList: window.__KEY_COMMANDER.getList,
 };
