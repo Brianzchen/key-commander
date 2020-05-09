@@ -1,6 +1,6 @@
 // @flow
 type KeyT = 'keyup' | 'keydown' | 'keypress';
-type ModifierT = 'alt' | 'ctrl' | 'meta' | 'shift';
+type ModifierT = 'ctrl' | 'shift';
 
 type OptionsT = {
   event?: KeyT,
@@ -61,7 +61,7 @@ class KeyCommander {
     for (let i = 0, len = funcs.length; i < len; i++) {
       const funcObj: EventFuncT = funcs[i];
 
-      if (event.repeat && !funcObj.options.onRepeat) return;
+      if (event.repeat && !funcObj.options.onRepeat) continue;
 
       const other = {
         onTabElement: document.activeElement?.tabIndex !== -1,
@@ -85,7 +85,7 @@ class KeyCommander {
             if (o === 'ctrl') return event.ctrlKey;
             if (o === 'meta') return event.metaKey;
             if (o === 'shift') return event.shiftKey;
-            return true;
+            return false;
           });
           const isAllModifiersSelected = conditions.reduce((prev, curr) => {
             if (prev) {

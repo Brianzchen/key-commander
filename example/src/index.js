@@ -10,8 +10,32 @@ const App = () => {
   const [showing, setShowing] = useState(false);
 
   useEffect(() => {
-    kc.subscribe('Escape', () => {
+    // basic with miscasing
+    const escape = kc.subscribe('Escape', () => {
       console.log('you pressed escape');
+    });
+
+    // keyup with single modifier
+    const q = kc.subscribe('Q', () => {
+      console.log('you pressed q with shift');
+    }, { event: 'keyup', modifier: 'shift' });
+
+    // keydown with multiple modifiers
+    const w = kc.subscribe('w', () => {
+      console.log('you pressed w with shift + ctrl');
+    }, { modifier: ['shift', 'ctrl'] });
+
+    // keydown with repeat on
+    const e = kc.subscribe('e', () => {
+      console.log('you pressed e and it repeats');
+    }, { onRepeat: true });
+
+    // unsub all the above
+    kc.subscribe('enter', () => {
+      kc.unsub(escape);
+      kc.unsub(q);
+      kc.unsub(w);
+      kc.unsub(e);
     });
   }, []);
 
