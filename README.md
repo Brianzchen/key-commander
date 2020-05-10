@@ -5,7 +5,7 @@ Runs a single event listener for `keyup`, `keydown`, and `keypress` that can be 
 
 ## API
 ```js
-module.exports = {
+const kc = {
   subscribe: (key: string, func, options) => subId: string,
   unsub: (subId: string) => void,
   getList: () => Array<{
