@@ -96,3 +96,11 @@ You can also simplify this with module resolution such as [babel-plugin-transfor
   },
 ],
 ```
+
+If transforming imports and using [flow](https://github.com/facebook/flow) you may find you're not getting proper typings anymore. To fix this you can update your `.flowconfig` with `module.name_mapper`.
+
+```
+[options]
+module.name_mapper='^key-commander$' -> 'key-commander/instanced'
+# other options ...
+```
