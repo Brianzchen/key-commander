@@ -22,7 +22,7 @@ type EventFuncT = {
 
 type EventFuncListT = Array<EventFuncT>
 
-class KeyCommander {
+module.exports = class KeyCommander {
   keyupFuncs: EventFuncListT;
 
   keydownFuncs: EventFuncListT;
@@ -133,14 +133,4 @@ class KeyCommander {
   getList() {
     return [...this.keydownFuncs, ...this.keyupFuncs, ...this.keypressFuncs];
   }
-}
-
-if (typeof window.__KEY_COMMANDER === 'undefined') {
-  window.__KEY_COMMANDER = new KeyCommander();
-}
-
-module.exports = {
-  subscribe: window.__KEY_COMMANDER.subscribe,
-  unsub: window.__KEY_COMMANDER.unsub,
-  getList: window.__KEY_COMMANDER.getList,
 };

@@ -1,5 +1,5 @@
 # key-commander
-A centralised keyboard listener for parts of an application to subscribe to
+A centralised keyboard listener for parts of an application to subscribe to.
 
 Runs a single event listener for `keyup`, `keydown`, and `keypress` that can be subscribed to, and the functions you pass in will not be called unless all defined option criterias are satisfied.
 
@@ -41,7 +41,9 @@ options: {
 ## Usage
 
 ```js
-import kc from 'key-commander';
+import KeyCommander from 'key-commander';
+
+const kc = new KeyCommander();
 
 const subId = kc.subscribe('escape', () => {});
 
@@ -51,7 +53,9 @@ kc.unsub(subId);
 With React:
 ```js
 import React from 'react';
-import kc from 'key-commander';
+import KeyCommander from 'key-commander';
+
+const kc = new KeyCommander();
 
 const Comp = () => {
   useEffect(() => {
@@ -68,4 +72,27 @@ const Comp = () => {
 
   return <div />;
 }
+```
+
+## Single Instance
+
+Alternatively, if you don't want to manage your own instance you can have `key-commander` run its own that's stored in an abstracted window object. Otherwise you can manage the instance yourself, by passing the functionality through react context for example.
+
+```js
+import kc from 'key-commander/instanced';
+```
+
+You can also simplify this with module resolution such as [babel-plugin-transform-imports](https://www.npmjs.com/package/babel-plugin-transform-imports) so you only need to type `import kc from 'key-commander'` when importing.
+
+```js
+[
+  'transform-imports',
+  {
+    'key-commander': {
+      transform: 'key-commander/instanced',
+      preventFullImport: true,
+    },
+    // other transforms ...
+  },
+],
 ```

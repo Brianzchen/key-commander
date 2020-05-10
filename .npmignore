@@ -1,8 +1,14 @@
 # files
+.eslintignore
+.eslintrc.js
 .flowconfig
 .gitignore
 .nvmrc
-index.js
+babel.config.js
+CHANGELOG.md
+renovate.json
+yarn.lock
 
 # folders
 example/
+src/

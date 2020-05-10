@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 
-import kc from '../../index';
+import kc from '../../instanced';
 
 import ShowHide from './ShowHide';
 
