@@ -5,7 +5,6 @@
 .gitignore
 .nvmrc
 babel.config.js
-CHANGELOG.md
 renovate.json
 yarn.lock
 
