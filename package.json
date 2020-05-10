@@ -28,5 +28,14 @@
     "eslint-plugin-react-hooks": "2.5.1",
     "flow-bin": "0.124.0",
     "flow-copy-source": "2.0.9"
-  }
+  },
+  "keywords": [
+    "keyboard",
+    "event",
+    "listener",
+    "handler",
+    "keyup",
+    "keydown",
+    "keypress"
+  ]
 }
