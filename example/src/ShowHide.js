@@ -1,7 +1,7 @@
 // @flow
 import React, { useEffect } from 'react';
 
-import kc from '../../index.dist';
+import kc from '../../index';
 
 // Tests sub/unsub
 const ShowHide = () => {
