@@ -2,13 +2,14 @@
   "name": "key-commander",
   "version": "0.1.0",
   "description": "A centralised keyboard listener for parts of an application to subscribe to",
-  "main": "index.dist.js",
+  "main": "index.js",
   "repository": "git@github.com:Brianzchen/key-commander.git",
   "author": "Brian Chen <bzchen93@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "build": "babel index.js --out-file index.dist.js && cp index.js index.dist.js.flow",
-    "build:watch": "babel index.js --out-file index.dist.js --watch",
+    "build:babel": "babel src/index.js --out-file index.js",
+    "build": "yarn build:babel && cp src/index.js index.js.flow",
+    "build:watch": "build:babel --watch",
     "prepublish": "yarn build"
   },
   "devDependencies": {
