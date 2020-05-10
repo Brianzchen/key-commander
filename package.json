@@ -6,6 +6,7 @@
   "repository": "git@github.com:Brianzchen/key-commander.git",
   "author": "Brian Chen <bzchen93@gmail.com>",
   "license": "MIT",
+  "publishConfig": { "registry": "https://npm.pkg.github.com/" },
   "scripts": {
     "build:babel": "babel src --out-dir .",
     "build:flow": "flow-copy-source src .",
