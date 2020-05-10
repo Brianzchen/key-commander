@@ -90,7 +90,7 @@ You can also simplify this with module resolution such as [babel-plugin-transfor
   {
     'key-commander': {
       transform: 'key-commander/instanced',
-      preventFullImport: true,
+      preventFullImport: false,
     },
     // other transforms ...
   },
