@@ -27,6 +27,6 @@
     "eslint-plugin-react": "7.19.0",
     "eslint-plugin-react-hooks": "2.5.1",
     "flow-bin": "0.124.0",
-    "flow-copy-source": "^2.0.9"
+    "flow-copy-source": "2.0.9"
   }
 }
