@@ -82,22 +82,22 @@ Alternatively, if you don't want to manage your own instance you can have `key-c
 import kc from 'key-commander/instanced';
 ```
 
-You can also simplify this with module resolution such as [babel-plugin-transform-imports](https://www.npmjs.com/package/babel-plugin-transform-imports) so you only need to type `import kc from 'key-commander'` when importing.
+You can also simplify this with module resolution with webpack module alias so you only need to type `import kc from 'key-commander'` when importing.
 
 ```js
-[
-  'transform-imports',
-  {
-    'key-commander': {
-      transform: 'key-commander/instanced',
-      preventFullImport: false,
+const webpackConfig = {
+  // other options ...
+  resolve: {
+    alias: {
+      'key-commander': 'key-commander/instanced',
     },
-    // other transforms ...
+    // other resolvers ...
   },
-],
+  // other options ...
+};
 ```
 
-If transforming imports and using [flow](https://github.com/facebook/flow) you may find you're not getting proper typings anymore. To fix this you can update your `.flowconfig` with `module.name_mapper`.
+If resolving imports and using [flow](https://github.com/facebook/flow) you may find you're not getting proper typings anymore. To fix this you can update your `.flowconfig` with `module.name_mapper`.
 
 ```
 [options]

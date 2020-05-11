@@ -1,6 +1,6 @@
 {
   "name": "key-commander",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "A centralised keyboard listener for parts of an application to subscribe to",
   "main": "index.js",
   "repository": "git@github.com:Brianzchen/key-commander.git",
