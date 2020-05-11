@@ -3,6 +3,20 @@ A centralised keyboard listener for parts of an application to subscribe to.
 
 Runs a single event listener for `keyup`, `keydown`, and `keypress` that can be subscribed to, and the functions you pass in will not be called unless all defined option criterias are satisfied.
 
+## Install
+
+Using `npm`
+
+```shell
+npm i key-commander
+```
+
+Using `yarn`
+
+```shell
+yarn add key-commander
+```
+
 ## API
 ```js
 const kc = {
