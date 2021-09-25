@@ -3,6 +3,8 @@ A centralised keyboard listener for parts of an application to subscribe to.
 
 Runs a single event listener for `keyup`, `keydown`, and `keypress` that can be subscribed to, and the functions you pass in will not be called unless all defined option criterias are satisfied.
 
+> You can find a list of accepted special characters [here](https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/key/Key_Values) eg: `ArrowUp`
+
 ## Install
 
 Using `npm`

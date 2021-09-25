@@ -2,23 +2,23 @@
 type KeyT = 'keyup' | 'keydown' | 'keypress';
 type ModifierT = 'alt' | 'ctrl' | 'meta' | 'shift';
 
-type OptionsT = {
+type OptionsT = {|
   event?: KeyT,
   modifier?: ModifierT | Array<ModifierT>,
   onRepeat?: boolean,
-};
+|};
 
-type EventFuncT = {
+type EventFuncT = {|
   id: string,
   key: string,
   func: (
     event: KeyboardEvent,
-    {
+    {|
       onTabElement: boolean,
-    },
+    |},
   ) => void,
   options: OptionsT,
-}
+|}
 
 type EventFuncListT = Array<EventFuncT>
 
@@ -34,9 +34,13 @@ module.exports = class KeyCommander {
     this.keydownFuncs = [];
     this.keypressFuncs = [];
 
+    // $FlowExpectedError[method-unbinding]
     (this: any).listener = this.listener.bind(this);
+    // $FlowExpectedError[method-unbinding]
     (this: any).subscribe = this.subscribe.bind(this);
+    // $FlowExpectedError[method-unbinding]
     (this: any).unsub = this.unsub.bind(this);
+    // $FlowExpectedError[method-unbinding]
     (this: any).getList = this.getList.bind(this);
 
     window.addEventListener('keyup', (event) => this.listener(event, 'keyup'));
@@ -44,7 +48,7 @@ module.exports = class KeyCommander {
     window.addEventListener('keypress', (event) => this.listener(event, 'keypress'));
   }
 
-  getFuncArray(event: KeyT) {
+  getFuncArray(event: KeyT): EventFuncListT {
     switch (event) {
       case 'keyup':
         return this.keyupFuncs;
@@ -108,7 +112,7 @@ module.exports = class KeyCommander {
     key: string,
     func: Function,
     options?: OptionsT = { event: 'keydown', onRepeat: false },
-  ) {
+  ): string {
     const { event = 'keydown' } = options;
 
     const id: string = Math.random().toString(36).substr(2, 9);
@@ -130,7 +134,7 @@ module.exports = class KeyCommander {
     this.keypressFuncs = filtering(this.keypressFuncs);
   }
 
-  getList() {
+  getList(): Array<EventFuncT> {
     return [...this.keydownFuncs, ...this.keyupFuncs, ...this.keypressFuncs];
   }
 };

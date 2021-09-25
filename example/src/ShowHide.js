@@ -1,11 +1,11 @@
 // @flow
-import React, { useEffect } from 'react';
+import * as React from 'react';
 
 import kc from '../../instanced';
 
 // Tests sub/unsub
-const ShowHide = () => {
-  useEffect(() => {
+const ShowHide = (): React.Node => {
+  React.useEffect(() => {
     const id = kc.subscribe('b', (event, { onTabElement }) => {
       if (!onTabElement) {
         console.log('You pressed b!');

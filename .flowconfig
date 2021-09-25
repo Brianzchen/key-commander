@@ -1,4 +1,5 @@
 [ignore]
+.*lib/.*
 .*example/node_modules/@parcel/.*
 
 [include]
@@ -6,8 +7,13 @@
 [libs]
 
 [lints]
+ambiguous-object-type=error
+deprecated-type=error
+deprecated-utility=error
 
 [options]
-esproposal.optional_chaining=enable
+format.bracket_spacing=true
+format.single_quotes=true
+include_warnings=true
 
 [strict]
