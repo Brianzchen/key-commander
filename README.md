@@ -44,13 +44,28 @@ func: (
   }
 ) => void
 options: {
-  // At what stage of the user input you would like the function called
-  event: 'keyup' | 'keydown' | 'keypress' // default: keydown
-  // If you want the function called only when one or more modifiers are active
-  // You may experience issues with alt/meta modifiers depending on browsers as they may be attached to other browser functionality
-  modifier: void | 'alt' | 'ctrl' | 'meta' | 'shift' | Array<'alt' | 'ctrl' | 'meta' | 'shift'> // default: void
-  // If you want the function called multiple times if the user holds down a particular key
-  onRepeat: boolean // default false
+  /**
+   * At what stage of the user input you would like the function called
+   *
+   * default: keydown
+   */
+  event: 'keyup' | 'keydown' | 'keypress'
+  /**
+   * If you want the function called only when one or more modifiers are active
+   * You may experience issues with alt/meta modifiers depending on browsers as
+   * they may be attached to other browser functionality.
+   *
+   * Can also pass `'none'` if you want to specifically trigger only if no modifiers are pressed
+   *
+   * default: void
+   */
+  modifier: void | 'alt' | 'ctrl' | 'meta' | 'shift' | Array<'alt' | 'ctrl' | 'meta' | 'shift'>
+  /**
+   * If you want the function called multiple times if the user holds down a particular key
+   *
+   * default: false
+   */
+  onRepeat: boolean
 }
 ```
 

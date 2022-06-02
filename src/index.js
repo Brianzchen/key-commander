@@ -3,8 +3,27 @@ type KeyT = 'keyup' | 'keydown' | 'keypress';
 type ModifierT = 'alt' | 'ctrl' | 'meta' | 'shift';
 
 type OptionsT = {|
+  /**
+   * At what stage of the user input you would like the function called
+   *
+   * default: keydown
+   */
   event?: KeyT,
-  modifier?: ModifierT | Array<ModifierT>,
+  /**
+   * If you want the function called only when one or more modifiers are active
+   * You may experience issues with alt/meta modifiers depending on browsers as
+   * they may be attached to other browser functionality.
+   *
+   * Can also pass `'none'` if you want to specifically trigger only if no modifiers are pressed
+   *
+   * default: void
+   */
+  modifier?: 'none' | ModifierT | Array<ModifierT>,
+  /**
+   * If you want the function called multiple times if the user holds down a particular key
+   *
+   * default: false
+   */
   onRepeat?: boolean,
 |};
 
@@ -14,6 +33,11 @@ type EventFuncT = {|
   func: (
     event: KeyboardEvent,
     {|
+      /**
+       * Use this to determine if the currently focused element
+       * when then event occurs has a tab index such as an input
+       * where you may not want to trigger your function
+       */
       onTabElement: boolean,
     |},
   ) => void,
@@ -83,6 +107,13 @@ module.exports = class KeyCommander {
             funcObj.func(event, other);
           } else if (modifier === 'shift' && event.shiftKey) {
             funcObj.func(event, other);
+          } else if (
+            modifier === 'none'
+            && !event.altKey
+            && !event.ctrlKey
+            && !event.metaKey
+            && !event.shiftKey) {
+            funcObj.func(event, other);
           }
         } else if (Array.isArray(modifier)) {
           const conditions: Array<boolean> = modifier.map((o) => {
@@ -92,12 +123,7 @@ module.exports = class KeyCommander {
             if (o === 'shift') return event.shiftKey;
             return false;
           });
-          const isAllModifiersSelected = conditions.reduce((prev, curr) => {
-            if (prev) {
-              return curr;
-            }
-            return prev;
-          }, true);
+          const isAllModifiersSelected = conditions.every((value) => value);
           if (isAllModifiersSelected) {
             funcObj.func(event, other);
           }

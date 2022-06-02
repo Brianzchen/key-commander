@@ -57,7 +57,11 @@ const App = () => {
   );
 };
 
-ReactDOM.render(
-  <App />,
-  document.getElementById('root'),
-);
+const ele = document.getElementById('root')
+
+if (ele) {
+  ReactDOM.render(
+    <App />,
+    ele,
+  );
+}
