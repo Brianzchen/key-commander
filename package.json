@@ -28,7 +28,7 @@
     "eslint-plugin-react-hooks": "4.0.2",
     "flow-bin": "^0.179.0",
     "flow-copy-source": "2.0.9",
-    "react-dom": "^17.0.2"
+    "react-dom": "^18.0.0"
   },
   "keywords": [
     "keyboard",
